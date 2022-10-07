@@ -23,12 +23,12 @@
 - Install tkinter through ``sudo apt install python3-tk``
 - Compile for chamfer distance
   ``` 
-  cd utils/distance
+  cd krf/utils/distance
   python setup.py install
   ```
 - Install KNN-CUDA
   ```shell
-  cd ../KNN-CUDA
+  cd KNN-CUDA
   make
   make install
   ```
