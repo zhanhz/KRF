@@ -34,7 +34,7 @@
   ```
 - Compile [RandLA-Net](https://github.com/qiqihaer/RandLA-Net-pytorch) operators:
   ```shell
-  cd cikp/models/RandLA/
+  cd krf/models/RandLA/
   sh compile_op.sh
   ```
 
