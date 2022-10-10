@@ -315,7 +315,7 @@ def main():
                 cls_id_lst, pred_pose, refine_pose_lst, pred_cls_ids, RTs, gt_kps, refine_kps_lst, cls_lst
                 )
             teval.push(cls_add_dis, cls_adds_dis, cls_refine_add_dis, cls_refine_adds_dis, pred_cls_ids, pred_pose, cls_kp_err)
-            print(time.time()-start)
+            # print(time.time()-start)
         teval.cal_auc()
         print(time.time()-all_start)
         

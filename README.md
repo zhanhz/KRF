@@ -39,16 +39,18 @@
   ```
 
 ## Create Dataset
-- **LineMOD:** Download the preprocessed LineMOD dataset from [onedrive link](https://hkustconnect-my.sharepoint.com/:u:/g/personal/yhebk_connect_ust_hk/ETW6iYHDbo1OsIbNJbyNBkABF7uJsuerB6c0pAiiIv6AHw?e=eXM1UE) or [google drive link](https://drive.google.com/drive/folders/19ivHpaKm9dOrr12fzC8IDFczWRPFxho7) (refer from [DenseFusion](https://github.com/j96w/DenseFusion)). Unzip it and link the unzipped ``Linemod_preprocessed/`` to ``cikp/datasets/linemod/Linemod_preprocessed``:
+- **LineMOD:** Download the preprocessed LineMOD dataset from [onedrive link](https://hkustconnect-my.sharepoint.com/:u:/g/personal/yhebk_connect_ust_hk/ETW6iYHDbo1OsIbNJbyNBkABF7uJsuerB6c0pAiiIv6AHw?e=eXM1UE) or [google drive link](https://drive.google.com/drive/folders/19ivHpaKm9dOrr12fzC8IDFczWRPFxho7) (refer from [DenseFusion](https://github.com/j96w/DenseFusion)). Unzip it and link the unzipped ``Linemod_preprocessed/`` to ``krf/datasets/linemod/Linemod_preprocessed``:
   ```shell
-  ln -s path_to_unzipped_Linemod_preprocessed cikp/dataset/linemod/
+  ln -s path_to_unzipped_Linemod_preprocessed krf/dataset/linemod/
   ```
   Generate rendered and fused data following [raster_triangle](https://github.com/ethnhe/raster_triangle).
 
-- **YCB-Video:** Download the YCB-Video Dataset from [PoseCNN](https://rse-lab.cs.washington.edu/projects/posecnn/). Unzip it and link the unzipped```YCB_Video_Dataset``` to ```cikp/datasets/ycb/YCB_Video_Dataset```:
+- **YCB-Video:** Download the YCB-Video Dataset from [PoseCNN](https://rse-lab.cs.washington.edu/projects/posecnn/). Unzip it and link the unzipped ```YCB_Video_Dataset``` to ```krf/datasets/ycb/YCB_Video_Dataset```:
   ```shell
-  ln -s path_to_unzipped_YCB_Video_Dataset cikp/datasets/ycb/
+  ln -s path_to_unzipped_YCB_Video_Dataset krf/datasets/ycb/
   ```
+- You can download pretrained complete networks and generated data [here](https://cloud.tsinghua.edu.cn/d/76867245c8a7481baccf/). 
+
   Then generate colored mesh point cloud for each objects by:
   ```
   python generate_color_pts.py
@@ -78,14 +80,13 @@ bash train_ycb_refine_pcn.sh
 ```
 
 ## Evaluation
-- You can download pretrained complete networks and generated data [here](https://cloud.tsinghua.edu.cn/d/76867245c8a7481baccf/)
 - To evaluate our method on YCB Dataset, run the following command:
 ```shell
 python ycb_refine_test.py -gpu=0 -ckpt=CHECKPOINT_PATH -use_pcld -use_rgb
 ```
 - To evaluate our method on Occlusion LineMOD Dataset, run the following command for one class:
 ```shell
-python ycb_refine_test.py -gpu=0 -ckpt=CHECKPOINT_PATH -cls='ape' -use_pcld -use_rgb
+python lm_refine_test.py -gpu=0 -ckpt=CHECKPOINT_PATH -cls='ape' -use_pcld -use_rgb
 ```
 or evaluate all class by:
 

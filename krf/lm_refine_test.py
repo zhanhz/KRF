@@ -45,7 +45,7 @@ import scipy.io as scio
 import scipy.misc
 import normalSpeed
 import yaml
-from utils.icp.icp import my_icprgb, my_icp_torch, my_icprgb_torch, fix_R_icp, fix_R_icprgb
+from utils.icp.icp import my_icprgb_torch, fix_R_icprgb
 
 config = Config(ds_name='linemod')
 bs_utils = Basic_Utils(config)
@@ -319,7 +319,6 @@ def main():
         with Image.open(os.path.join(cls_root, "add_data/pred_label/{}.png".format(item_name))) as pli:
             pred_labels = np.array(pli)
         pred_rgb_labels = pred_labels.copy()
-        if(np.where(pred_rgb_labels.flatten() > 0)[0].shape[0] == 0): continue
         pred_pose = np.load(os.path.join(cls_root, "add_data/pred_pose/{}.npy".format(item_name)))
         refine_pose_lst = pred_pose.copy()
 
@@ -344,7 +343,7 @@ def main():
             pred_pose, refine_pose_lst, obj_id, RTs
             )
         teval.push(cls_add_dis, cls_adds_dis, cls_refine_add_dis, cls_refine_adds_dis, pred_pose)
-        print(time.time()-start)
+        # print(time.time()-start)
     teval.cal_auc(obj_id)
     print(time.time()-all_start)
 
