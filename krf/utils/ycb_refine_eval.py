@@ -79,19 +79,23 @@ class TorchEval():
         print("mean kps errs:", all_errs / n_objs)
 
         print("Average of all object:")
+        print("BaseLine:")
         print("***************add:\t", np.mean(add_auc_lst[1:]))
         print("***************adds:\t", np.mean(adds_auc_lst[1:]))
         print("***************add(-s):\t", np.mean(add_s_auc_lst[1:]))
 
+        print("Ours:")
         print("***************add:\t", np.mean(add_auc_lst_icp[1:]))
         print("***************adds:\t", np.mean(adds_auc_lst_icp[1:]))
         print("***************add(-s):\t", np.mean(add_s_auc_lst_icp[1:]))
 
         print("All object (following PoseCNN):")
+        print("BaseLine:")
         print("***************add:\t", add_auc_lst[0])
         print("***************adds:\t", adds_auc_lst[0])
         print("***************add(-s):\t", add_s_auc_lst[0])
 
+        print("Ours:")
         print("***************add:\t", add_auc_lst_icp[0])
         print("***************adds:\t", adds_auc_lst_icp[0])
         print("***************add(-s):\t", add_s_auc_lst_icp[0])

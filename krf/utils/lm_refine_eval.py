@@ -75,12 +75,14 @@ class TorchEval():
 
         cls_type = config.lm_id2obj_dict[obj_id]
         print(obj_id, cls_type)
+        print("BaseLine:")
         print("***************add:\t", add_auc)
         print("***************adds:\t", adds_auc)
         print("***************add(-s):\t", add_s_auc)
         print("***************add < 0.1 diameter:\t", add)
         print("***************adds < 0.1 diameter:\t", adds)
-
+        print("===========================================")
+        print("Ours:")
         print("***************add_icp:\t", add_auc_icp)
         print("***************adds_icp:\t", adds_auc_icp)
         print("***************add(-s)_icp:\t", add_s_auc_icp)
