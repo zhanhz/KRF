@@ -147,19 +147,6 @@ def cal_view_pred_pose(model, data, epoch=0, obj_id=-1):
         all_msk[all_choose] = all_labels[:, 0]
         all_msk = all_msk.reshape((480, 640))
 
-        if data['rnd_typ'][0] =='render':
-            ensure_fd(os.path.join(root, 'render/pred_pose'))
-            ensure_fd(os.path.join(root, 'render/pred_label'))   
-            cv2.imwrite(root + 'render/pred_label/{}.png'.format(data['name'][0]), all_msk*255)
-        elif data['rnd_typ'][0] =='fuse':
-            ensure_fd(os.path.join(root, 'fuse/pred_pose'))
-            ensure_fd(os.path.join(root, 'fuse/pred_label'))
-            cv2.imwrite(root + 'fuse/pred_label/{}.png'.format(data['name'][0]), all_msk*255)
-        else:
-            ensure_fd(os.path.join(root, 'pred_label'))
-            ensure_fd(os.path.join(root, 'pred_pose'))
-            cv2.imwrite(root + 'pred_label/{}.png'.format(data['name'][0]), all_msk*255)
-
         if args.dataset == "ycb":
             pred_cls_ids, pred_pose_lst, _ = cal_frame_poses(
                 pcld[0], classes_rgbd[0], end_points['pred_ctr_ofs'][0],
@@ -188,6 +175,18 @@ def cal_view_pred_pose(model, data, epoch=0, obj_id=-1):
             cv2.imwrite(root + '{}-pred_label.png'.format(data['name'][0]), all_msk)
             np.save(root + '{}-pred_pose.npy'.format(data['name'][0]), (pred_pose_lst))
         else:
+            if data['rnd_typ'][0] =='render':
+                ensure_fd(os.path.join(root, 'render/pred_pose'))
+                ensure_fd(os.path.join(root, 'render/pred_label'))   
+                cv2.imwrite(root + 'render/pred_label/{}.png'.format(data['name'][0]), all_msk*255)
+            elif data['rnd_typ'][0] =='fuse':
+                ensure_fd(os.path.join(root, 'fuse/pred_pose'))
+                ensure_fd(os.path.join(root, 'fuse/pred_label'))
+                cv2.imwrite(root + 'fuse/pred_label/{}.png'.format(data['name'][0]), all_msk*255)
+            else:
+                ensure_fd(os.path.join(root, 'pred_label'))
+                ensure_fd(os.path.join(root, 'pred_pose'))
+                cv2.imwrite(root + 'pred_label/{}.png'.format(data['name'][0]), all_msk*255)
             pred_pose_lst = cal_frame_poses_lm(
                 pcld[0], classes_rgbd[0], end_points['pred_ctr_ofs'][0],
                 end_points['pred_kp_ofs'][0], True, config.n_objects, False, obj_id

@@ -343,7 +343,7 @@ class Dataset():
             kp_3ds=kp3ds.astype(np.float32),
             rgb_pt=rgb_pts_all.reshape(-1,3).astype(np.float32), #added by ourself
             all_choose=all_choose.astype(np.int32),
-            # name=item_name,
+            name=item_name, # comment out this line if try to train or test FFB6D method
         )
         item_dict.update(inputs)
         if self.debug:

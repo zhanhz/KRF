@@ -253,17 +253,19 @@ class Dataset():
                     self.cls_lst[cls_id-1], kp_type=kp_type, ds_type='ycb'
                 ).copy()
                 ctr = bs_utils.get_ctr(self.cls_lst[cls_id-1]).copy()
+                mesh = bs_utils.get_pointxyzrgb(self.cls_lst[cls_id-1])[:, :3]
                 r = pred_obj_pose[:, :3]
                 t = pred_obj_pose[:, 3]
                 r1 = np.dot(gt_r.T, r)
                 t1 = np.dot(gt_t.T - t, r)
                 kps_gt = np.dot(kps, r1) + t1
                 ctr_gt = np.dot(ctr, r1) + t1
+                pts_gt = np.dot(mesh, r1) + t1
 
                 dpt_xyz = np.dot(all_cld - t, r).reshape(dpt_xyz_ori.shape)
                 obj_cld = dpt_xyz.reshape(-1,3)[msk_obj]
 
-                n_sample = 2000
+                n_sample = 2048
                 if obj_cld.shape[0] > 200:
                     kpcld_idx = np.random.permutation(obj_cld.shape[0])
                     if kpcld_idx.shape[0] < n_sample:
@@ -365,6 +367,7 @@ class Dataset():
             pred_labels=pred_labels_pt.astype(np.int32),  # [npts]
             rgb_labels=rgb_labels.astype(np.int32),  # [h, w]
             # all_cld=all_cld.reshape(-1,3).astype(np.float32), #added by ourself
+            pts_gt = pts_gt.astype(np.float32),
             RT=RT.astype(np.float32),
             kp_targ_ofst=kp_targ_ofst.astype(np.float32),
             ctr_targ_ofst=ctr_targ_ofst.astype(np.float32),
