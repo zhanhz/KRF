@@ -49,7 +49,7 @@
   ```shell
   ln -s path_to_unzipped_YCB_Video_Dataset krf/datasets/ycb/
   ```
-- You can download pretrained complete networks and generated data [here](https://cloud.tsinghua.edu.cn/d/76867245c8a7481baccf/). 
+- You can download pretrained complete networks and generated data [here](https://pan.baidu.com/s/1VIIcRWbkFrABYc4IVChFhw?pwd=d46m ). 
 
   Then generate colored mesh point cloud for each objects by:
   ```
