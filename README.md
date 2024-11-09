@@ -69,14 +69,14 @@ bash train_ycb_refine_pcn.sh
 ```
 - To train the network on LineMOD Dataset, run the following command:
 ```shell  
-# commands in train_ycb_refine_pcn.sh
+# commands in train_lm_refine_pcn.sh
 n_gpu=6
 cls='ape'
 #ckpt_mdl="/home/zhanhz/FFB6D/ffb6d/train_log/linemod/checkpoints/${cls}/FFB6D_${cls}_REFINE_best.pth.tar"
 python3 -m torch.distributed.launch --nproc_per_node=$n_gpu train_lm_refine_pcn.py --gpus=$n_gpu --cls=$cls #-checkpoint $ckpt_mdl
 # end
 
-bash train_ycb_refine_pcn.sh
+bash train_lm_refine_pcn.sh
 ```
 
 ## Evaluation
